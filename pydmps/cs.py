@@ -75,6 +75,7 @@ class CanonicalSystem():
         error_coupling float: slow down if the error is > 1
         """
         self.x += (-self.ax * self.x * error_coupling) * tau * self.dt
+        # print "self.x is %f" % self.x
         return self.x
 
     def step_rhythmic(self, tau=1.0, error_coupling=1.0):
@@ -98,10 +99,10 @@ if __name__ == "__main__":
     cs = CanonicalSystem(dt=.001, pattern='discrete')
     # test normal rollout
     x_track1 = cs.rollout()
-
+    print "x_track1 is %s " % str(x_track1)
     cs.reset_state()
     # test error coupling
-    timesteps = int(1.0/.001)
+    timesteps = int(1.0/.001) # tau = 0.001
     x_track2 = np.zeros(timesteps)
     err = np.zeros(timesteps)
     err[200:400] = 2

@@ -40,12 +40,15 @@ class DMPs(object):
         self.dmps = dmps
         self.bfs = bfs
         self.dt = dt
+        # check if y0 is int or float type
         if isinstance(y0, (int, float)):
             y0 = np.ones(self.dmps)*y0
         self.y0 = y0
+        # check if goal is int or float type
         if isinstance(goal, (int, float)):
             goal = np.ones(self.dmps)*goal
         self.goal = goal
+        # w is a array dmpsxbfs vector/matrix
         if w is None:
             # default is f = 0
             w = np.zeros((self.dmps, self.bfs))
